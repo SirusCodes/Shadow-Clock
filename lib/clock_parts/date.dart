@@ -1,41 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Date extends StatelessWidget {
-  Date({
-    Key key,
-    @required this.theme,
-    @required this.date,
-  }) : super(key: key);
+  Date({Key key, @required this.theme}) : super(key: key);
 
   final ThemeData theme;
-  final DateTime date;
-
-  // weekdays
-  final List<String> weekdays = [
-    "SUNDAY",
-    "MONDAY",
-    "TUESDAY",
-    "WEDNESDAY",
-    "THURSDAY",
-    "FRIDAY",
-    "SATURDAY"
-  ];
-
-  // months
-  final List<String> months = [
-    "JANUARY",
-    "FEBUARY",
-    "MARCH",
-    "APRIL",
-    "MAY",
-    "JUNE",
-    "JULY",
-    "AUGUST",
-    "SEPTEMBER",
-    "OCTOBER",
-    "NOVEMBER",
-    "DECEMBER"
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +13,13 @@ class Date extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         // Date
-        cText(text: date.day.toString(), size: 70.0),
+        cText(text: DateTime.now().day.toString(), size: 70.0),
         // weekday
-        cText(text: weekdays[date.weekday], size: 20.0),
+        cText(text: DateFormat.EEEE().format(DateTime.now()), size: 20.0),
         // month, year
         cText(
-          text: "${months[date.month - 1]}, ${date.year}",
+          text:
+              "${DateFormat.MMMM().format(DateTime.now())}, ${DateTime.now().year}",
         )
       ],
     );
@@ -61,7 +31,7 @@ class Date extends StatelessWidget {
       style: TextStyle(
         color: theme.primaryColor,
         fontSize: size,
-        shadows: [Shadow(color: theme.primaryColor, blurRadius: 15.0)],
+        shadows: [Shadow(color: theme.primaryColor, blurRadius: 10.0)],
       ),
     );
   }

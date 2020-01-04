@@ -34,45 +34,45 @@ class AnalogClock extends StatefulWidget {
 
 class _AnalogClockState extends State<AnalogClock> {
   var _now = DateTime.now();
-  var _temperature = '';
-  var _temperatureRange = '';
-  var _condition = '';
-  var _location = '';
+  // var _temperature = '';
+  // var _temperatureRange = '';
+  // var _condition = '';
+  // var _location = '';
   Timer _timer;
 
   @override
   void initState() {
     super.initState();
-    widget.model.addListener(_updateModel);
+    // widget.model.addListener(_updateModel);
     // Set the initial values.
     _updateTime();
-    _updateModel();
+    // _updateModel();
   }
 
   @override
   void didUpdateWidget(AnalogClock oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.model != oldWidget.model) {
-      oldWidget.model.removeListener(_updateModel);
-      widget.model.addListener(_updateModel);
+      // oldWidget.model.removeListener(_updateModel);
+      // widget.model.addListener(_updateModel);
     }
   }
 
   @override
   void dispose() {
     _timer?.cancel();
-    widget.model.removeListener(_updateModel);
+    // widget.model.removeListener(_updateModel);
     super.dispose();
   }
 
-  void _updateModel() {
-    setState(() {
-      _temperature = widget.model.temperatureString;
-      _temperatureRange = '(${widget.model.low} - ${widget.model.highString})';
-      _condition = widget.model.weatherString;
-      _location = widget.model.location;
-    });
-  }
+  // void _updateModel() {
+  //   setState(() {
+  //     _temperature = widget.model.temperatureString;
+  //     _temperatureRange = '(${widget.model.low} - ${widget.model.highString})';
+  //     _condition = widget.model.weatherString;
+  //     _location = widget.model.location;
+  //   });
+  // }
 
   void _updateTime() {
     setState(() {
@@ -140,23 +140,23 @@ class _AnalogClockState extends State<AnalogClock> {
             // clock hands
             Expanded(
               flex: 4,
-              child: Clock(customTheme: customTheme, now: _now),
+              child: Clock(customTheme: customTheme),
             ),
             // date and temperature
             Expanded(
               flex: 2,
               child: Column(
                 children: <Widget>[
-                  // show data
-                  Expanded(
-                    flex: 1,
-                    child: Date(theme: customTheme, date: _now),
-                  ),
                   // show weather info
                   Expanded(
                     flex: 1,
-                    child: Container(),
-                  )
+                    child: Placeholder(),
+                  ),
+                  // show data
+                  Expanded(
+                    flex: 1,
+                    child: Date(theme: customTheme),
+                  ),
                 ],
               ),
             ),
