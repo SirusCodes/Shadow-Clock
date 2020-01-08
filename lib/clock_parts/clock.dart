@@ -1,7 +1,8 @@
-import 'package:analog_clock/clock_parts/hour_fade.dart';
+import 'package:analog_clock/utils/dial.dart';
+import 'package:analog_clock/utils/hour_animation/hour_transition.dart';
 import 'package:flutter/material.dart';
-import '../analog_clock.dart';
-import '../drawn_hand.dart';
+import '../base_clock.dart';
+import '../utils/hands/drawn_hand.dart';
 
 class Clock extends StatelessWidget {
   Clock({Key key, @required this.customTheme}) : super(key: key);
@@ -21,19 +22,19 @@ class Clock extends StatelessWidget {
         ),
         DrawnHand(
           color: customTheme.highlightColor,
-          thickness: 16,
+          thickness: 8,
           size: 0.9,
           angleRadians: DateTime.now().minute * radiansPerTick,
         ),
         DrawnHand(
           color: customTheme.highlightColor,
-          thickness: 18,
+          thickness: 12,
           size: 0.6,
           angleRadians: DateTime.now().hour * radiansPerHour +
               (DateTime.now().minute / 60) * radiansPerHour,
         ),
-        HourFade(theme: customTheme, fadeIn: true),
-        HourFade(theme: customTheme, fadeIn: false),
+        HourTransition(theme: customTheme),
+        Dial(theme: customTheme),
       ],
     );
   }

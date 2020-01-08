@@ -10,7 +10,7 @@ import 'package:flutter_clock_helper/model.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-import 'analog_clock.dart';
+import 'base_clock.dart';
 
 void main() {
   // A temporary measure until Platform supports web and TargetPlatform supports
@@ -27,7 +27,7 @@ void main() {
   // For more information, see the flutter_clock_helper package.
   //
   // Your job is to edit [AnalogClock], or replace it with your own clock
-  // widget. (Look in analog_clock.dart for more details!)
+  // widget. (Look in base_clock.dart for more details!)
   runApp(MyApp());
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
