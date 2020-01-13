@@ -5,6 +5,7 @@
 import 'dart:async';
 
 import 'package:analog_clock/clock_parts/date.dart';
+import 'package:analog_clock/clock_parts/weather.dart';
 import 'package:flutter_clock_helper/model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
@@ -33,46 +34,38 @@ class AnalogClock extends StatefulWidget {
 }
 
 class _AnalogClockState extends State<AnalogClock> {
+  var _temperature = '';
+  var _temperatureRange = '';
+  var _condition = '';
+  var _location = '';
+
   var _now = DateTime.now();
-  // var _temperature = '';
-  // var _temperatureRange = '';
-  // var _condition = '';
-  // var _location = '';
   Timer _timer;
 
   @override
   void initState() {
     super.initState();
-    // widget.model.addListener(_updateModel);
     // Set the initial values.
+    widget.model.addListener(_updateModel);
+    _updateModel();
     _updateTime();
-    // _updateModel();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    widget.model.removeListener(_updateModel);
+    super.dispose();
   }
 
   @override
   void didUpdateWidget(AnalogClock oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (widget.model != oldWidget.model) {
-      // oldWidget.model.removeListener(_updateModel);
-      // widget.model.addListener(_updateModel);
+      oldWidget.model.removeListener(_updateModel);
+      widget.model.addListener(_updateModel);
     }
   }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    // widget.model.removeListener(_updateModel);
-    super.dispose();
-  }
-
-  // void _updateModel() {
-  //   setState(() {
-  //     _temperature = widget.model.temperatureString;
-  //     _temperatureRange = '(${widget.model.low} - ${widget.model.highString})';
-  //     _condition = widget.model.weatherString;
-  //     _location = widget.model.location;
-  //   });
-  // }
 
   void _updateTime() {
     setState(() {
@@ -83,6 +76,15 @@ class _AnalogClockState extends State<AnalogClock> {
         Duration(seconds: 1) - Duration(milliseconds: _now.millisecond),
         _updateTime,
       );
+    });
+  }
+
+  void _updateModel() {
+    setState(() {
+      _temperature = widget.model.temperatureString;
+      _temperatureRange = '${widget.model.low} - ${widget.model.highString}';
+      _condition = widget.model.weatherString;
+      _location = widget.model.location;
     });
   }
 
@@ -113,18 +115,6 @@ class _AnalogClockState extends State<AnalogClock> {
           );
 
     final time = DateFormat.Hms().format(DateTime.now());
-    // final weatherInfo = DefaultTextStyle(
-    //   style: TextStyle(color: customTheme.primaryColor),
-    //   child: Column(
-    //     crossAxisAlignment: CrossAxisAlignment.start,
-    //     children: [
-    //       Text(_temperature),
-    //       Text(_temperatureRange),
-    //       Text(_condition),
-    //       Text(_location),
-    //     ],
-    //   ),
-    // );
 
     return Semantics.fromProperties(
       properties: SemanticsProperties(
@@ -137,29 +127,28 @@ class _AnalogClockState extends State<AnalogClock> {
           children: <Widget>[
             // clock hands
             Expanded(
-              flex: 4,
+              flex: 5,
               child: Clock(customTheme: customTheme),
             ),
-            // date and temperature
+            // date and weather
             Expanded(
-              flex: 2,
+              flex: 3,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  // show weather info
-                  Expanded(
-                    flex: 1,
-                    child: Placeholder(),
+                  // show weather and other info
+                  Weather(
+                    customTheme,
+                    _condition,
+                    _temperature,
+                    _temperatureRange,
+                    _location,
                   ),
-                  // show data
-                  Expanded(
-                    flex: 1,
-                    child: Date(theme: customTheme),
-                  ),
+                  // show date
+                  Date(theme: customTheme),
                 ],
               ),
             ),
-            // right padding
-            // Flexible(flex: 1, child: Container()),
           ],
         ),
       ),

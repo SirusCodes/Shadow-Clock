@@ -1,3 +1,4 @@
+import 'package:analog_clock/clock_parts/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -13,26 +14,19 @@ class Date extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         // Date
-        cText(text: DateTime.now().day.toString(), size: 70.0),
+        cText(text: DateTime.now().day.toString(), size: 70.0, theme: theme),
         // weekday
-        cText(text: DateFormat.EEEE().format(DateTime.now()), size: 20.0),
+        cText(
+            text: DateFormat.EEEE().format(DateTime.now()),
+            size: 25.0,
+            theme: theme),
         // month, year
         cText(
-          text:
-              "${DateFormat.MMMM().format(DateTime.now())}, ${DateTime.now().year}",
-        )
+            text:
+                "${DateFormat.MMMM().format(DateTime.now())}, ${DateTime.now().year}",
+            theme: theme,
+            size: 20.0)
       ],
-    );
-  }
-
-  Text cText({String text, double size}) {
-    return Text(
-      text,
-      style: TextStyle(
-        color: theme.primaryColor,
-        fontSize: size,
-        shadows: [Shadow(color: theme.primaryColor, blurRadius: 10.0)],
-      ),
     );
   }
 }

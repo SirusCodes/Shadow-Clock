@@ -30,7 +30,8 @@ void main() {
   // widget. (Look in base_clock.dart for more details!)
   runApp(MyApp());
 
-  SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
   SystemChrome.setEnabledSystemUIOverlays([]);
 }
 
