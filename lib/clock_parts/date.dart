@@ -9,24 +9,24 @@ class Date extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        // Date
-        cText(text: DateTime.now().day.toString(), size: 70.0, theme: theme),
-        // weekday
-        cText(
-            text: DateFormat.EEEE().format(DateTime.now()),
-            size: 25.0,
-            theme: theme),
-        // month, year
-        cText(
-            text:
-                "${DateFormat.MMMM().format(DateTime.now())}, ${DateTime.now().year}",
-            theme: theme,
-            size: 20.0)
-      ],
+    return Center(
+      child: Column(
+        children: <Widget>[
+          // Date
+          cText(text: DateTime.now().day.toString(), size: 70.0, theme: theme),
+          // weekday
+          cText(
+              text: DateFormat.EEEE().format(DateTime.now()),
+              size: 25.0,
+              theme: theme),
+          // month, year
+          cText(
+              text:
+                  "${DateFormat.MMMM().format(DateTime.now())}, ${DateTime.now().year}",
+              theme: theme,
+              size: 20.0)
+        ],
+      ),
     );
   }
 }

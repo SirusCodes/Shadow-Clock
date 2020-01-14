@@ -63,7 +63,7 @@ class _HourTransitionState extends State<HourTransition>
   @override
   Widget build(BuildContext context) {
     _time = DateTime.now();
-    if (_time.second == 58) {
+    if (_time.second == 58 && _time.minute == 59) {
       _radController.forward();
       _opacityController.forward();
     }

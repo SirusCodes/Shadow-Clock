@@ -14,13 +14,6 @@ class Clock extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // Example of a hand drawn with [CustomPainter].
-        // DrawnHand(
-        //   color: customTheme.accentColor,
-        //   thickness: 4,
-        //   size: 1,
-        //   angleRadians: DateTime.now().second * radiansPerTick,
-        // ),
         DrawnHand(
           color: customTheme.highlightColor,
           thickness: 8,
@@ -34,13 +27,40 @@ class Clock extends StatelessWidget {
           angleRadians: DateTime.now().hour * radiansPerHour +
               (DateTime.now().minute / 60) * radiansPerHour,
         ),
+        Center(
+          child: SizedBox.expand(
+            child: CustomPaint(
+              painter: CapPainter(customTheme),
+            ),
+          ),
+        ),
         HourTransition(theme: customTheme),
         Dial(theme: customTheme),
         Second(
           angleRadians: DateTime.now().second * radiansPerTick,
           theme: customTheme,
-        )
+        ),
       ],
     );
   }
+}
+
+class CapPainter extends CustomPainter {
+  CapPainter(this.theme);
+  ThemeData theme;
+  @override
+  void paint(Canvas canvas, Size size) {
+    final center = (Offset.zero & size).center;
+    final paint = Paint()
+      ..color = theme.primaryColor
+      ..maskFilter = MaskFilter.blur(BlurStyle.solid, 10.0);
+
+    canvas.drawCircle(center, 10, paint);
+  }
+
+  @override
+  bool shouldRepaint(CapPainter oldDelegate) => false;
+
+  @override
+  bool shouldRebuildSemantics(CapPainter oldDelegate) => false;
 }

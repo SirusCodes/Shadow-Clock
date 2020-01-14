@@ -118,13 +118,14 @@ class _AnalogClockState extends State<AnalogClock> {
 
     return Semantics.fromProperties(
       properties: SemanticsProperties(
-        label: 'Analog clock with time $time',
+        label: 'time is $time',
         value: time,
       ),
       child: Container(
         color: customTheme.backgroundColor,
         child: Row(
           children: <Widget>[
+            Expanded(flex: 1, child: Container()),
             // clock hands
             Expanded(
               flex: 5,

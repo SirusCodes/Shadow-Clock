@@ -16,12 +16,14 @@ class Weather extends StatelessWidget {
     return Column(
       children: <Widget>[
         Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             SizedBox(
-              height: 100,
-              width: 130,
+              height: 100.0,
+              width: 130.0,
               child: FlareActor(
                 "assets/$condition.flr",
+                animation: "animation",
               ),
             ),
             Column(
