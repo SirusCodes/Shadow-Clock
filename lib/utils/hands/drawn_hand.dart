@@ -6,6 +6,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../constants.dart';
 import 'hand.dart';
 
 /// A clock hand that is drawn with [CustomPainter]
@@ -75,14 +76,15 @@ class _HandPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final center = (Offset.zero & size).center;
     // We want to start at the top, not at the x-axis, so add pi/2.
-    final angle = angleRadians - math.pi / 2.0;
+    final angle = angleRadians - PI / 2.0;
     final length = size.shortestSide * 0.5 * handSize;
     final position = center + Offset(math.cos(angle), math.sin(angle)) * length;
     final linePaint = Paint()
       ..color = color
       ..strokeWidth = lineWidth
-      ..strokeCap = StrokeCap.round
-      ..maskFilter = MaskFilter.blur(BlurStyle.solid, 10.0);
+      ..strokeCap = StrokeCap.round // ends made round
+      ..maskFilter =
+          MaskFilter.blur(BlurStyle.solid, 10.0); // adds blur to the hands
 
     canvas.drawLine(center, position, linePaint);
   }

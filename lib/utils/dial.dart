@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import 'constants.dart';
 
+// makes dial for the clock
 class Dial extends StatelessWidget {
   const Dial({Key key, this.theme}) : super(key: key);
   final ThemeData theme;
@@ -31,8 +33,8 @@ class DialPainter extends CustomPainter {
       ..maskFilter = MaskFilter.blur(BlurStyle.solid, 10.0);
     canvas.drawCircle(center, size.height / 2 - 10.0, paintCircle);
 
-    for (double angleRad = 0; angleRad < 2 * math.pi; angleRad += math.pi / 6) {
-      final angle = angleRad - math.pi / 2.0;
+    for (double angleRad = 0; angleRad < 2 * PI; angleRad += PI / 6) {
+      final angle = angleRad - PI / 2.0;
       final length = size.shortestSide * 0.5 - 10.0;
       final position1 =
           center + Offset(math.cos(angle), math.sin(angle)) * length;

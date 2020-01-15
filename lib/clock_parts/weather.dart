@@ -15,6 +15,7 @@ class Weather extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
+        // flare animation
         SizedBox(
           height: 67.0,
           width: 67.0,
@@ -23,8 +24,11 @@ class Weather extends StatelessWidget {
             animation: "animation",
           ),
         ),
+        // temperature
         cText(text: temperature, theme: theme, size: 25),
+        // temprature range
         cText(text: temperatureRange, theme: theme, size: 11),
+        // location
         cText(text: location, theme: theme, size: 15),
       ],
     );

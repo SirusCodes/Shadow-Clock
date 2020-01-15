@@ -1,8 +1,8 @@
+import 'package:analog_clock/utils/constants.dart';
 import 'package:analog_clock/utils/dial.dart';
 import 'package:analog_clock/utils/hour_animation/hour_transition.dart';
 import 'package:analog_clock/utils/second_animation/second_transition.dart';
 import 'package:flutter/material.dart';
-import '../base_clock.dart';
 import '../utils/hands/drawn_hand.dart';
 
 class Clock extends StatelessWidget {
@@ -14,12 +14,14 @@ class Clock extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
+        // minutes hand
         DrawnHand(
           color: customTheme.highlightColor,
           thickness: 8,
           size: 0.9,
           angleRadians: DateTime.now().minute * radiansPerTick,
         ),
+        // hour hand
         DrawnHand(
           color: customTheme.highlightColor,
           thickness: 12,
@@ -27,6 +29,7 @@ class Clock extends StatelessWidget {
           angleRadians: DateTime.now().hour * radiansPerHour +
               (DateTime.now().minute / 60) * radiansPerHour,
         ),
+        // Cap present at top of intersection of hr n min hands
         Center(
           child: SizedBox.expand(
             child: CustomPaint(
@@ -34,8 +37,11 @@ class Clock extends StatelessWidget {
             ),
           ),
         ),
+        // hour transition
         HourTransition(theme: customTheme),
+        // dial
         Dial(theme: customTheme),
+        // seconds rotor
         Second(
           angleRadians: DateTime.now().second * radiansPerTick,
           theme: customTheme,
