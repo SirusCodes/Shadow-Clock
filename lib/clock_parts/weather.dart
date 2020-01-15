@@ -15,26 +15,17 @@ class Weather extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            SizedBox(
-              height: 100.0,
-              width: 130.0,
-              child: FlareActor(
-                "assets/$condition.flr",
-                animation: "animation",
-              ),
-            ),
-            Column(
-              children: <Widget>[
-                cText(text: temperature, theme: theme, size: 30),
-                cText(text: temperatureRange, theme: theme, size: 15),
-              ],
-            )
-          ],
+        SizedBox(
+          height: 67.0,
+          width: 67.0,
+          child: FlareActor(
+            "assets/$condition.flr",
+            animation: "animation",
+          ),
         ),
-        cText(text: location, theme: theme, size: 18),
+        cText(text: temperature, theme: theme, size: 25),
+        cText(text: temperatureRange, theme: theme, size: 11),
+        cText(text: location, theme: theme, size: 15),
       ],
     );
   }
