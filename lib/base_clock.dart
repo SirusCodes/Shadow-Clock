@@ -125,7 +125,6 @@ class _AnalogClockState extends State<AnalogClock> {
         color: customTheme.backgroundColor,
         child: Row(
           children: <Widget>[
-            Expanded(flex: 1, child: Container()),
             // clock hands
             Expanded(
               flex: 5,
