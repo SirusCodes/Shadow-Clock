@@ -22,11 +22,11 @@ class _HourTransitionState extends State<HourTransition>
     _radController = AnimationController(
       /* from trial and error i found that 
         there need to animation need to finish 
-        .25 secs before for desired results*/
+        .30 secs before for desired results*/
 
       vsync: this,
       // animation runs for 2 secs and starts 58sec before
-      duration: Duration(seconds: 1, milliseconds: 975),
+      duration: Duration(seconds: 1, milliseconds: 970),
     );
 
     // rotates the hour num around dial
