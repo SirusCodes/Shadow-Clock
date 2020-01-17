@@ -1,7 +1,7 @@
 import 'package:analog_clock/utils/constants.dart';
 import 'package:analog_clock/utils/dial.dart';
-import 'package:analog_clock/utils/hour_animation/hour_transition.dart';
-import 'package:analog_clock/utils/second_animation/second_transition.dart';
+import 'package:analog_clock/utils/hour_transition.dart';
+import 'package:analog_clock/utils/second_transition.dart';
 import 'package:flutter/material.dart';
 import '../utils/hands/drawn_hand.dart';
 
@@ -66,7 +66,4 @@ class CapPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(CapPainter oldDelegate) => false;
-
-  @override
-  bool shouldRebuildSemantics(CapPainter oldDelegate) => false;
 }

@@ -1,5 +1,23 @@
 import 'package:flutter/material.dart';
-import '../constants.dart';
+import 'constants.dart';
+
+class Second extends StatelessWidget {
+  const Second({Key key, @required this.angleRadians, @required this.theme})
+      : super(key: key);
+
+  final double angleRadians;
+  final ThemeData theme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: SizedBox.expand(
+          child: CustomPaint(
+        painter: SecondPainter(angleRadians: angleRadians, theme: theme),
+      )),
+    );
+  }
+}
 
 // making that red colored arc pill and move it around
 class SecondPainter extends CustomPainter {
